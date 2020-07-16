@@ -108,10 +108,17 @@ def get_courses_for_skills(relevant_skills_dict):
             courses_for_skill = get_table(sql_command=query.format(rs))
 
             if not courses_for_skill.empty:
-                all_courses_for_skill.append(courses_for_skill)
+                all_courses_for_skill.append(courses_for_skill.values.tolist())
 
         courses_for_skill_dict[key] = all_courses_for_skill
     return courses_for_skill_dict
 
 
-print(get_courses_for_skills(find_skills_associated_to_missing_skills(find_missing_skills_from_curriculum())))
+def recommend():
+    courses_for_skills = get_courses_for_skills(find_skills_associated_to_missing_skills(find_missing_skills_from_curriculum()))
+    return courses_for_skills
+
+
+# print(get_courses_for_skills(
+#     find_skills_associated_to_missing_skills(
+#         find_missing_skills_from_curriculum())))
