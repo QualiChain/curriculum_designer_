@@ -103,12 +103,10 @@ def get_courses_for_skills(relevant_skills_dict):
 
     courses_for_skill_dict = {}
     for key in relevant_skills_dict:
-        all_courses_for_skill = []
+        all_courses_for_skill = {}
         for rs in relevant_skills_dict[key]:
             courses_for_skill = get_table(sql_command=query.format(rs))
-
-            if not courses_for_skill.empty:
-                all_courses_for_skill.append(courses_for_skill.values.tolist())
+            all_courses_for_skill[rs] = courses_for_skill.values.tolist()
 
         courses_for_skill_dict[key] = all_courses_for_skill
     return courses_for_skill_dict
