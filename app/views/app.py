@@ -21,7 +21,6 @@ CORS(app)
 def recommend():
     try:
         response = curriculum_recommendation.recommend()
-        # print(response)
         return jsonify(response)
     except Exception as ex:
         log.error(ex)
