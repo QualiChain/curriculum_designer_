@@ -114,7 +114,8 @@ def get_courses_for_skills(relevant_skills_dict):
 
 def recommend():
     courses_for_skills = get_courses_for_skills(find_skills_associated_to_missing_skills(find_missing_skills_from_curriculum()))
-    return courses_for_skills
+    json_dict = utils.transform_courses_for_skills_API_form(courses_for_skills)
+    return json_dict
 
 
 # print(get_courses_for_skills(
