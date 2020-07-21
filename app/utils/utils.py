@@ -3,17 +3,17 @@ import pandas as pd
 
 
 def read_skills_dict_from_json():
-    with open('../data/skills_idx_dict.json', 'r') as f:
+    with open('data/skills_idx_dict.json', 'r') as f:
         dct = json.load(f)
     return dct
 
 
 def read_association_rules():
-    return pd.read_csv("../data/association_rules.csv", index_col=0)
+    return pd.read_csv("data/association_rules.csv", index_col=0)
 
 
 def read_skills():
-    return pd.read_csv('../data/skills_with_occurences.csv')
+    return pd.read_csv('data/skills_with_occurences.csv')
 
 
 def transform_courses_for_skills_API_form(courses_for_skills):

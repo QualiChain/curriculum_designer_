@@ -1,5 +1,4 @@
 import sys
-sys.path.append('app')
 from utils import utils
 import pandas as pd
 

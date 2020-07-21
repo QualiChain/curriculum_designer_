@@ -1,0 +1,11 @@
+version: '3.3'
+
+services:
+  curriculum-designer:
+    hostname: curriculum_designer
+    container_name: curriculum_designer
+    restart: always
+    build:
+      context: "."
+    ports:
+      - 5000:5000
