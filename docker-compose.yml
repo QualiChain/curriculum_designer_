@@ -8,7 +8,7 @@ services:
     build:
       context: "."
     ports:
-      - 6060:6060
+      - 8080:6060
     networks:
       - config_qmediator
 
