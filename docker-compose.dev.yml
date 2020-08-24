@@ -9,10 +9,3 @@ services:
       context: "."
     ports:
       - 6060:5000
-    networks:
-      - config_qmediator
-
-
-networks:
-  config_qmediator:
-    external: true
