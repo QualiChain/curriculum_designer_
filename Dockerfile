@@ -14,7 +14,6 @@ RUN pip3 install -r requirements.txt
 #copy contents to container automatic-forensic-tool
 ADD app .
 
-EXPOSE 5000
 
 #start app
 CMD bash run.sh

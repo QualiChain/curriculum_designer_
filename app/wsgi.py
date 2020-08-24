@@ -13,4 +13,4 @@ log = logging.getLogger(__name__)
 
 if __name__ == '__main__':
     log.info("Course recommendation services")
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=6060, debug=True)

@@ -8,4 +8,4 @@ services:
     build:
       context: "."
     ports:
-      - 6060:5000
+      - 6060:6060

@@ -5,7 +5,7 @@ The QualiChain Curriculum Designer finds the skills in demand by the job market 
 An offline process is executed to find association rules which can be found to the notebook association_rules_for_curriculum_designer.ipynb.
 The online part uses as input the association rules and the top skills of the job market and provides a json with the results.
 
-Application can be accessed from the port `5000`.
+Application can be accessed from the port `6060`.
 
 ## Docker Installation
 
@@ -25,7 +25,7 @@ Installation according to QualiChain Network Specifications:
 
 ### Input
 POST request to:
-'http://127.0.0.1:5000/curriculum_recommendation'
+'http://127.0.0.1:6060/curriculum_recommendation'
 
 ### Output
 ```json
