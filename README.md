@@ -9,7 +9,10 @@ Application can be accessed from the port `5000`.
 
 ## Docker Installation
 
-Build project: 
+Standalone Installation: 
+`docker-compose -f docker-compose.dev.yml up -d --build`
+
+Installation according to QualiChain Network Specifications:
 `docker-compose up -d --build`
 
 ## Local Installation
