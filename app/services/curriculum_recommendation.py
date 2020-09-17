@@ -13,6 +13,7 @@ def recommend():
     courses_for_skills = get_courses_for_skills(
         find_skills_associated_to_missing_skills(
             find_missing_skills_from_curriculum()))
+    # print(courses_for_skills)
     json_dict = utils.transform_courses_for_skills_API_form(courses_for_skills)
     return json_dict
 
@@ -31,7 +32,28 @@ def get_courses_for_skills(relevant_skills_dict):
             all_courses_for_skill[rs] = courses_for_skill.values.tolist()
 
         courses_for_skill_dict[key] = all_courses_for_skill
+
+    scored_courses_for_skill_dict = add_score_for_courses(courses_for_skill_dict)
+    for key in courses_for_skill_dict:
+        if key in scored_courses_for_skill_dict:
+            courses_for_skill_dict[key]['scored_courses'] = scored_courses_for_skill_dict[key]
+        else:
+            courses_for_skill_dict[key]['scored_courses'] = {}
     return courses_for_skill_dict
+
+
+def add_score_for_courses(courses_for_skill_dict):
+    courses_with_score = {}
+    course_list_dict = {}
+    for key in courses_for_skill_dict:
+        course_list = []
+        for key2 in courses_for_skill_dict[key]:
+            course_list.extend(courses_for_skill_dict[key][key2])
+
+        course_list_dict[key] = course_list
+        if key in course_list_dict:
+            courses_with_score[key] = find_score_for_courses(course_list_dict[key])
+    return courses_with_score
 
 
 def find_skills_associated_to_missing_skills(missing_skills):
@@ -59,6 +81,34 @@ def find_skills_associated_to_missing_skills(missing_skills):
 
         relevant_skills_dict[key] = list(set(skill_list))
     return relevant_skills_dict
+
+
+def find_score_for_courses(course_list):
+    counter = find_hits_for_courses(course_list)
+    max_hits = find_max_hits(counter)
+    score_dict = {}
+    if max_hits > 0:
+        for key in counter:
+            score_dict[key] = counter[key]/max_hits
+    return score_dict
+
+
+def find_hits_for_courses(course_list):
+    counter = {}
+    for c in course_list:
+        if str(c) in counter:
+            counter[str(c)] += 1
+        else:
+            counter[str(c)] = 1
+    return counter
+
+
+def find_max_hits(counter_dict):
+    max_hits = 0
+    for key in counter_dict:
+        if counter_dict[key] > max_hits:
+            max_hits = counter_dict[key]
+    return max_hits
 
 
 def find_missing_skills_from_curriculum():
