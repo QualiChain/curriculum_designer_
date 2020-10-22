@@ -23,7 +23,7 @@ def get_curriculum_coverage():
     top_skills = find_top_skills(skills_df)
     missing_skills = find_missing_skills_from_top_skills(top_skills)
 
-    return 1-len(missing_skills)/len(top_skills)
+    return 1-len(missing_skills)/len(skills_df)
 
 
 def get_courses_for_skills(relevant_skills_dict):
