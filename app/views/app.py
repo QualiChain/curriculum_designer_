@@ -25,3 +25,13 @@ def recommend():
     except Exception as ex:
         log.error(ex)
         return ex, 400
+
+
+@app.route('/curriculum_skill_coverage', methods=['POST'])
+def get_coverage():
+    try:
+        response = {'curriculum_skill_coverage' : curriculum_recommendation.get_curriculum_coverage()}
+        return jsonify(response)
+    except Exception as ex:
+        log.error(ex)
+        return ex, 400
