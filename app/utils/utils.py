@@ -2,6 +2,15 @@ import json
 import pandas as pd
 
 
+def read_skills_ids_dict_from_json():
+    with open('data/skills_ids_dict.json', 'r') as f:
+        dct = json.load(f)
+    return dct
+
+
+skills_ids_dict = read_skills_ids_dict_from_json()
+
+
 def read_skills_dict_from_json():
     with open('data/skills_idx_dict.json', 'r') as f:
         dct = json.load(f)
@@ -28,15 +37,17 @@ def transform_courses_for_skills_API_form(courses_for_skills):
                         course = {'course_title': rel_course[0], 'course_id': rel_course[1]}
                         related_courses.append(course)
 
-                rel_courses = {'skill_title': rel_skill, 'related_courses': related_courses}
+                rel_courses = {'skill_title': rel_skill, 'related_courses': related_courses,
+                               'skill_id': skills_ids_dict[rel_skill]}
                 relevant_skills.append(rel_courses)
         scored_courses = courses_for_skills[rec_skill]['scored_courses']
         sc_courses = []
         for key in scored_courses:
             crs = eval(key)
-            c = {'course_title': crs[0],'course_id': crs[1], 'score': scored_courses[key]}
+            c = {'course_title': crs[0], 'course_id': crs[1], 'score': scored_courses[key]}
             sc_courses.append(c)
-        rec_skill_dict = {'skill_title': rec_skill, 'relevant_skills': relevant_skills, 'scored_courses': sc_courses}
+        rec_skill_dict = {'skill_title': rec_skill, 'relevant_skills': relevant_skills, 'scored_courses': sc_courses,
+                          'skill_id': skills_ids_dict[rec_skill]}
         recommended_skills.append(rec_skill_dict)
     rec_skills_dict = {'recommended_skills': recommended_skills}
     return rec_skills_dict
